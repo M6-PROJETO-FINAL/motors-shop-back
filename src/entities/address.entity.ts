@@ -44,12 +44,12 @@ export class Address {
   update_at: Date;
 
   @OneToMany((type) => Buyer, (buyer) => buyer.address, {
-    eager: true,
+    // eager: true,
   })
   buyers: Buyer[];
 
   @OneToMany((type) => Seller, (seller) => seller.address, {
-    eager: true,
+    // eager: true,
   })
   sellers: Seller[];
 }

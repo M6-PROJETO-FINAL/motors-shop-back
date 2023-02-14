@@ -4,11 +4,12 @@
   "author": "Higor Skowronski <higor.skowronski@gmail.com>",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev src/app.ts",
+    "dev": "ts-node-dev --ignore-watch node_modules src/server.ts",
     "typeorm": "typeorm-ts-node-commonjs"
   },
   "license": "MIT",
   "dependencies": {
+    "@types/pg": "^8.6.6",
     "bcrypt": "^5.1.0",
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.5.1",

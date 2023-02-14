@@ -53,12 +53,12 @@ export class Advertisement {
   update_at: Date;
 
   @ManyToOne((type) => Buyer, (buyer) => buyer.advertisements, {
-    eager: true,
+    // eager: true,
   })
   buyer: Buyer;
 
   @ManyToOne((type) => Seller, (seller) => seller.advertisements, {
-    eager: true,
+    // eager: true,
   })
   seller: Seller;
 }
