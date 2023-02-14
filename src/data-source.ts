@@ -1,5 +1,10 @@
 import { DataSource } from "typeorm";
 import "dotenv/config";
+import { Address } from "./entities/address.entity";
+import { Advertisement } from "./entities/advertisement.entity";
+import { Buyer } from "./entities/buyer.entity";
+import { Seller } from "./entities/seller.entity";
+import { InitialMigration1676397016465 } from "./migrations/1676397016465-InitialMigration";
 
 const AppDataSource = new DataSource({
   type: "postgres",
@@ -10,8 +15,8 @@ const AppDataSource = new DataSource({
   database: process.env.POSTGRES_DB,
   synchronize: false,
   logging: true,
-  entities: ["src/entities/*.ts"],
-  migrations: ["src/migrations/*.ts"],
+  entities: [Address, Advertisement, Buyer, Seller],
+  migrations: [InitialMigration1676397016465],
 });
 
 export default AppDataSource;
