@@ -6,6 +6,7 @@ import listAllSellersService from "../../services/seller/listAllSellerService";
 // import updateSellerService from "../../services/seller/updateSellerService";
 import deleteSellerService from "../../services/seller/deleteSellerService";
 import loginSellerService from "../../services/loginSellerService";
+import updateSellerService from "../../services/seller/updateSellerService";
 
 
 const createSellerController = async (req: Request, res: Response) => {
@@ -21,13 +22,20 @@ const listAllSellersController = async (req: Request, res: Response) => {
   return res.json(instanceToPlain(sellers));
 };
 
-// const updateSellerController = async (req: Request, res: Response) => {
-//   const sellerUpdate = req.body;
-//   const id = req.seller.id;
-//   const updateSeller = await updateSellerService(sellerUpdate, id);
+export const updateSellerController = async (req: Request, res: Response) => {
+  try {
+    await updateSellerService(req.body, req.params.id);
 
-//   return res.json(instanceToPlain(updateSeller));
-// };
+    return res.status(200).send();
+  } catch (err) {
+    if (err instanceof Error) {
+      return res.status(400).send({
+        error: err.name,
+        message: err.message,
+      });
+    }
+  }
+};
 
 const deleteSellerController = async (req: Request, res: Response) => {
   const sellerId = req.params.id;
