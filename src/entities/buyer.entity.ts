@@ -29,7 +29,7 @@ export class Buyer {
   @Column()
   phone: string;
 
-  @Column()
+  @Column({ type: "date" })
   birthdate: Date;
 
   @Column()

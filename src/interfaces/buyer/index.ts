@@ -24,8 +24,8 @@ export interface IBuyerUpdate {
   password?: string;
 }
 
-
 export interface IBuyerLogin {
     email: string;
     password: string;
 }
+

@@ -7,6 +7,7 @@ import listAllBuyersService from "../../services/buyer/listAllBuyersService";
 import deleteBuyerService from "../../services/buyer/deleteBuyerService";
 import loginBuyerService from "../../services/loginBuyerService";
 
+
 const createBuyerController = async (req: Request, res: Response) => {
   const buyer: IBuyerRequest = req.body;
   const createdBuyer = await createBuyerService(buyer);
@@ -48,9 +49,7 @@ const loginBuyerController = async (req: Request, res: Response) => {
         })
       }
      }
-  
   }
-
 
 export {
   createBuyerController,
