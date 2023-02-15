@@ -5,6 +5,8 @@ import createBuyerService from "../../services/buyer/createBuyerService";
 import listAllBuyersService from "../../services/buyer/listAllBuyersService";
 // import updateBuyerService from "../../services/buyer/updateBuyerService";
 import deleteBuyerService from "../../services/buyer/deleteBuyerService";
+import loginBuyerService from "../../services/loginBuyerService";
+
 
 const createBuyerController = async (req: Request, res: Response) => {
   const buyer: IBuyerRequest = req.body;
@@ -34,9 +36,25 @@ const deleteBuyerController = async (req: Request, res: Response) => {
   return res.status(200).json(instanceToPlain(deletedBuyer));
 };
 
+const loginBuyerController = async (req: Request, res: Response) => {
+    const buyer = req.body
+  
+    try {
+      const token = await loginBuyerService(buyer)
+      return res.status(200).json({token})
+    } catch (error) {
+        if(error instanceof Error){
+            return res.status(403).json({
+                message: error.message
+        })
+      }
+     }
+  }
+
 export {
   createBuyerController,
   listAllBuyersController,
   // updateBuyerController,
   deleteBuyerController,
+  loginBuyerController
 };

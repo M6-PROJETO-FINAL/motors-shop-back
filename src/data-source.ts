@@ -6,6 +6,7 @@ import { Buyer } from "./entities/buyer.entity";
 import { Seller } from "./entities/seller.entity";
 import { InitialMigration1676397016465 } from "./migrations/1676397016465-InitialMigration";
 
+
 const AppDataSource = new DataSource({
   type: "postgres",
   port: 5432,
