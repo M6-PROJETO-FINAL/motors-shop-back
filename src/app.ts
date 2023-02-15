@@ -9,5 +9,6 @@ app.use(cors());
 
 app.use(express.json());
 app.use("/buyer", buyerRoutes);
+app.use("/seller", buyerRoutes);
 
 export default app;
