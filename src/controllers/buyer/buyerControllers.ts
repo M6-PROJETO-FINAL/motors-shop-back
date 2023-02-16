@@ -3,10 +3,9 @@ import { instanceToPlain } from "class-transformer";
 import { IBuyerRequest } from "../../interfaces/buyer";
 import createBuyerService from "../../services/buyer/createBuyerService";
 import listAllBuyersService from "../../services/buyer/listAllBuyersService";
-// import updateBuyerService from "../../services/buyer/updateBuyerService";
+import updateBuyerService from "../../services/buyer/updateBuyerService";
 import deleteBuyerService from "../../services/buyer/deleteBuyerService";
 import loginBuyerService from "../../services/loginBuyerService";
-
 
 const createBuyerController = async (req: Request, res: Response) => {
   const buyer: IBuyerRequest = req.body;
@@ -21,13 +20,13 @@ const listAllBuyersController = async (req: Request, res: Response) => {
   return res.json(instanceToPlain(buyers));
 };
 
-// const updateBuyerController = async (req: Request, res: Response) => {
-//   const buyerUpdate = req.body;
-//   const id = req.buyer.id;
-//   const updateBuyer = await updateBuyerService(buyerUpdate, id);
+const updateBuyerController = async (req: Request, res: Response) => {
+  const buyerUpdate = req.body;
+  const id = req.buyer.id;
+  const updateBuyer = await updateBuyerService(buyerUpdate, id);
 
-//   return res.json(instanceToPlain(updateBuyer));
-// };
+  return res.json(instanceToPlain(updateBuyer));
+};
 
 const deleteBuyerController = async (req: Request, res: Response) => {
   const buyerId = req.params.id;
@@ -37,24 +36,24 @@ const deleteBuyerController = async (req: Request, res: Response) => {
 };
 
 const loginBuyerController = async (req: Request, res: Response) => {
-    const buyer = req.body
-  
-    try {
-      const token = await loginBuyerService(buyer)
-      return res.status(200).json({token})
-    } catch (error) {
-        if(error instanceof Error){
-            return res.status(403).json({
-                message: error.message
-        })
-      }
-     }
+  const buyer = req.body;
+
+  try {
+    const token = await loginBuyerService(buyer);
+    return res.status(200).json({ token });
+  } catch (error) {
+    if (error instanceof Error) {
+      return res.status(403).json({
+        message: error.message,
+      });
+    }
   }
+};
 
 export {
   createBuyerController,
   listAllBuyersController,
-  // updateBuyerController,
+  updateBuyerController,
   deleteBuyerController,
-  loginBuyerController
+  loginBuyerController,
 };
