@@ -5,12 +5,13 @@ import {
   listAllSellersController,
   updateSellerController,
 } from "../../controllers/seller/sellerControllers";
+import { verifyAuthTokenMiddleware, verifyOwner } from "../../middlewares";
 
 const sellerRoutes = Router();
 
 sellerRoutes.post("", createSellerController);
 sellerRoutes.get("", listAllSellersController);
-sellerRoutes.patch("", updateSellerController);
-sellerRoutes.patch("/:id", deleteSellerController);
+sellerRoutes.patch("", verifyAuthTokenMiddleware, verifyOwner, updateSellerController);
+sellerRoutes.patch("/:id", verifyAuthTokenMiddleware, verifyOwner, deleteSellerController);
 
 export default sellerRoutes;
