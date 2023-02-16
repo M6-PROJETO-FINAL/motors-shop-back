@@ -5,9 +5,8 @@ import createSellerService from "../../services/seller/createSellerService";
 import listAllSellersService from "../../services/seller/listAllSellerService";
 // import updateSellerService from "../../services/seller/updateSellerService";
 import deleteSellerService from "../../services/seller/deleteSellerService";
-import loginSellerService from "../../services/loginSellerService";
+import loginSellerService from "../../services/session/loginSellerService";
 import updateSellerService from "../../services/seller/updateSellerService";
-
 
 const createSellerController = async (req: Request, res: Response) => {
   const seller: ISellerRequest = req.body;
@@ -45,24 +44,24 @@ const deleteSellerController = async (req: Request, res: Response) => {
 };
 
 const loginSellerController = async (req: Request, res: Response) => {
-    const seller = req.body
-  
-    try {
-      const token = await loginSellerService(seller)
-      return res.status(200).json({token})
-    } catch (error) {
-        if(error instanceof Error){
-            return res.status(403).json({
-                message: error.message
-        })
-      }
-     }
+  const seller = req.body;
+
+  try {
+    const token = await loginSellerService(seller);
+    return res.status(200).json({ token });
+  } catch (error) {
+    if (error instanceof Error) {
+      return res.status(403).json({
+        message: error.message,
+      });
+    }
   }
+};
 
 export {
   createSellerController,
   listAllSellersController,
   updateSellerController,
   deleteSellerController,
-  loginSellerController
+  loginSellerController,
 };

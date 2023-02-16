@@ -11,7 +11,17 @@ const sellerRoutes = Router();
 
 sellerRoutes.post("", createSellerController);
 sellerRoutes.get("", listAllSellersController);
-sellerRoutes.patch("", verifyAuthTokenMiddleware, verifyOwner, updateSellerController);
-sellerRoutes.patch("/:id", verifyAuthTokenMiddleware, verifyOwner, deleteSellerController);
+sellerRoutes.patch(
+  "",
+  verifyAuthTokenMiddleware,
+  verifyOwner,
+  updateSellerController
+);
+sellerRoutes.patch(
+  "/:id",
+  verifyAuthTokenMiddleware,
+  verifyOwner,
+  deleteSellerController
+);
 
 export default sellerRoutes;
