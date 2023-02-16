@@ -1,18 +1,31 @@
+import {
+  verifyAuthTokenMiddleware,
+  verifyBuyer,
+  verifyOwner,
+} from "./../../middlewares/index";
 import { Router } from "express";
 import {
   createBuyerController,
   deleteBuyerController,
   listAllBuyersController,
-  loginBuyerController,
   updateBuyerController,
 } from "../../controllers/buyer/buyerControllers";
 
 const buyerRoutes = Router();
 
-buyerRoutes.post("", loginBuyerController);
 buyerRoutes.post("", createBuyerController);
 buyerRoutes.get("", listAllBuyersController);
-buyerRoutes.patch("", updateBuyerController);
-buyerRoutes.patch("/:id", deleteBuyerController);
+buyerRoutes.patch(
+  "",
+  verifyAuthTokenMiddleware,
+  verifyBuyer,
+  updateBuyerController
+);
+buyerRoutes.patch(
+  "/:id",
+  verifyAuthTokenMiddleware,
+  verifyBuyer,
+  deleteBuyerController
+);
 
 export default buyerRoutes;

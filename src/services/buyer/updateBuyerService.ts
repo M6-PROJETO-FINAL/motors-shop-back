@@ -20,6 +20,7 @@ const updateBuyerService = async (
   const findBuyer = await buyerRepository.findOneBy({
     id,
   });
+  
   if (!findBuyer) {
     throw new AppError("User not found", 404);
   }
