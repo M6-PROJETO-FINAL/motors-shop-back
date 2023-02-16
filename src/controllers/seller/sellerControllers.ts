@@ -22,7 +22,7 @@ const listAllSellersController = async (req: Request, res: Response) => {
   return res.json(instanceToPlain(sellers));
 };
 
-export const updateSellerController = async (req: Request, res: Response) => {
+const updateSellerController = async (req: Request, res: Response) => {
   try {
     await updateSellerService(req.body, req.params.id);
 
@@ -62,7 +62,7 @@ const loginSellerController = async (req: Request, res: Response) => {
 export {
   createSellerController,
   listAllSellersController,
-  // updateSellerController,
+  updateSellerController,
   deleteSellerController,
   loginSellerController
 };

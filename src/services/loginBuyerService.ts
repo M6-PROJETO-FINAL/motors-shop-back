@@ -14,7 +14,7 @@ const loginBuyerService = async ({email, password} : IBuyerLogin): Promise<Strin
         throw new Error("Wrong email/password")
     } 
     if(!bcrypt.compareSync(password, buyer.password)) throw new Error("Wrong email or password")
-    const token = jwt.sign({id: buyer.id}, String(process.env.JWT_SECRET), { expiresIn: "1d",})
+    const token = jwt.sign({id: buyer.id, name: buyer.name, type: 'buyer'}, String(process.env.JWT_SECRET), { expiresIn: "1d",})
 
     return token
 
