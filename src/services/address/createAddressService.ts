@@ -1,7 +1,7 @@
-import { IAddress } from "../../interfaces/address"; 
+import { IAddress } from "../../interfaces/address";
 import AppDataSource from "../../data-source";
 import { Address } from "../../entities/address.entity";
-import { validateZipCode } from "../../validators/buyer/buyerValidators";
+import { validateZipCode } from "../../validators/user/userValidators";
 
 const createAddressService = async ({
   zipCode,

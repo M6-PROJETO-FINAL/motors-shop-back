@@ -7,8 +7,7 @@ import {
   ManyToOne,
 } from "typeorm";
 
-import { Buyer } from "./buyer.entity";
-import { Seller } from "./seller.entity";
+import { User } from "./user.entity";
 
 @Entity()
 export class Advertisement {
@@ -52,13 +51,6 @@ export class Advertisement {
   })
   update_at: Date;
 
-  @ManyToOne((type) => Buyer, (buyer) => buyer.advertisements, {
-    // eager: true,
-  })
-  buyer: Buyer;
-
-  @ManyToOne((type) => Seller, (seller) => seller.advertisements, {
-    // eager: true,
-  })
-  seller: Seller;
+  @ManyToOne((type) => User, (user) => user.advertisements)
+  user: User;
 }

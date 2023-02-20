@@ -1,27 +1,27 @@
 import { AppError } from "../../errors/appError";
-import { IBuyerRequest } from "../../interfaces/buyer";
+import { IUserRequest } from "../../interfaces/user";
 import {
   validateEmail,
   validatePassword,
-} from "../../validators/buyer/buyerValidators";
+} from "../../validators/user/userValidators";
 import { hash } from "bcryptjs";
 import AppDataSource from "../../data-source";
-import { Buyer } from "../../entities/buyer.entity";
+import { User } from "../../entities/user.entity";
 import createAddressService from "../address/createAddressService";
 
-const createBuyerService = async ({
-  name,
+const createUserService = async ({
+  fullName,
   email,
   cpf,
-  phone,
+  cellPhone,
   birthdate,
   description,
   address,
   password,
-  type_account,
+  isSeller,
   active,
-}: IBuyerRequest): Promise<Buyer> => {
-  const buyerRepository = AppDataSource.getRepository(Buyer);
+}: IUserRequest): Promise<User> => {
+  const userRepository = AppDataSource.getRepository(User);
   if (!password) {
     throw new AppError("Password is missing", 400);
   }
@@ -34,20 +34,20 @@ const createBuyerService = async ({
 
   const newAddress = await createAddressService(address);
 
-  const newBuyer = buyerRepository.create({
-    name,
+  const newUser = userRepository.create({
+    fullName,
     email,
     cpf,
-    phone,
+    cellPhone,
     birthdate,
-    description,
     address: newAddress,
+    description,
+    isSeller,
     password: hashedPassword,
-    type_account,
     active,
   });
 
-  const userAlreadyExists = await buyerRepository.findOneBy({
+  const userAlreadyExists = await userRepository.findOneBy({
     email,
   });
 
@@ -55,9 +55,9 @@ const createBuyerService = async ({
     throw new AppError("Email is already exists", 409);
   }
 
-  await buyerRepository.save(newBuyer);
+  await userRepository.save(newUser);
 
-  return newBuyer;
+  return newUser;
 };
 
-export default createBuyerService;
+export default createUserService;
