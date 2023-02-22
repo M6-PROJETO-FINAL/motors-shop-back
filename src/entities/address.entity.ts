@@ -7,8 +7,7 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 
-import { Buyer } from "./buyer.entity";
-import { Seller } from "./seller.entity";
+import { User } from "./user.entity";
 
 @Entity()
 export class Address {
@@ -43,13 +42,6 @@ export class Address {
   })
   update_at: Date;
 
-  @OneToMany((type) => Buyer, (buyer) => buyer.address, {
-    // eager: true,
-  })
-  buyers: Buyer[];
-
-  @OneToMany((type) => Seller, (seller) => seller.address, {
-    // eager: true,
-  })
-  sellers: Seller[];
+  @OneToMany((type) => User, (user) => user.address)
+  users: User[];
 }
