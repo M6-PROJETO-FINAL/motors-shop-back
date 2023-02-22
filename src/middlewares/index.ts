@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import "dotenv/config";
 import AppDataSource from "../data-source";
-import { Buyer } from "../entities/buyer.entity";
+import { User } from "./../entities/user.entity";
 import { AppError } from "../errors/appError";
 
 export const verifyAuthTokenMiddleware = (
@@ -37,25 +37,7 @@ export const verifyAuthTokenMiddleware = (
   }
 };
 
-export const verifySeller = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  try {
-    let type = req.user.userType;
-
-    if (type != "seller") {
-      return res.status(401).json({ message: "Unauthorized" });
-    }
-
-    next();
-  } catch (err) {
-    return res.status(400).send(err);
-  }
-};
-
-export const verifyBuyer = async (
+export const verifyIsSeller = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -63,14 +45,14 @@ export const verifyBuyer = async (
   try {
     const id = req.user.userId;
 
-    const buyerRepository = AppDataSource.getRepository(Buyer);
+    const userRepository = AppDataSource.getRepository(User);
 
-    const buyerFound = await buyerRepository.findOneBy({
+    const userFound = await userRepository.findOneBy({
       id: id,
     });
 
-    if (!buyerFound) {
-      throw new AppError("User is not doctor", 403);
+    if (!userFound?.isSeller) {
+      throw new AppError("User is not seller", 403);
     }
     next();
   } catch (err) {

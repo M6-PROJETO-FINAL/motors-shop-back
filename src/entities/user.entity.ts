@@ -13,12 +13,12 @@ import { Address } from "./address.entity";
 import { Advertisement } from "./advertisement.entity";
 
 @Entity()
-export class Buyer {
+export class User {
   @PrimaryGeneratedColumn("uuid")
   readonly id: string;
 
   @Column()
-  name: string;
+  fullName: string;
 
   @Column()
   email: string;
@@ -27,7 +27,7 @@ export class Buyer {
   cpf: string;
 
   @Column()
-  phone: string;
+  cellPhone: string;
 
   @Column({ type: "date" })
   birthdate: Date;
@@ -35,12 +35,12 @@ export class Buyer {
   @Column()
   description: string;
 
+  @Column({ default: false })
+  isSeller: boolean;
+
   @Column()
   @Exclude()
   password: string;
-
-  @Column()
-  type_account: boolean;
 
   @CreateDateColumn({
     name: "created_at",
@@ -55,19 +55,13 @@ export class Buyer {
   @Column({ default: true })
   active: boolean;
 
-  @ManyToOne((type) => Address, (address) => address.buyers, {
+  @ManyToOne((type) => Address, (address) => address.users, {
     eager: true,
   })
   address: Address;
 
-  @OneToMany((type) => Advertisement, (advertisement) => advertisement.buyer, {
+  @OneToMany((type) => Advertisement, (advertisement) => advertisement.user, {
     eager: true,
   })
   advertisements: Advertisement[];
-
-  constructor() {
-    if (!this.type_account) {
-      this.type_account = false;
-    }
-  }
 }
