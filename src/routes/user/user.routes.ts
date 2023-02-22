@@ -1,6 +1,6 @@
 import {
   verifyAuthTokenMiddleware,
-  verifyBuyer,
+  verifyIsSeller,
   verifyOwner,
 } from "../../middlewares/index";
 import { Router } from "express";
@@ -16,15 +16,15 @@ const userRoutes = Router();
 userRoutes.post("", createUserController);
 userRoutes.get("", listAllUsersController);
 userRoutes.patch(
-  "",
-  verifyAuthTokenMiddleware,
-  verifyBuyer,
-  updateUserController
-);
-userRoutes.patch(
   "/:id",
   verifyAuthTokenMiddleware,
-  verifyBuyer,
+  verifyOwner,
+  updateUserController
+);
+userRoutes.delete(
+  "/:id",
+  verifyAuthTokenMiddleware,
+  verifyOwner,
   deleteUserController
 );
 

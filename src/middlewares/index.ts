@@ -37,7 +37,7 @@ export const verifyAuthTokenMiddleware = (
   }
 };
 
-export const verifyBuyer = async (
+export const verifyIsSeller = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -45,14 +45,14 @@ export const verifyBuyer = async (
   try {
     const id = req.user.userId;
 
-    const buyerRepository = AppDataSource.getRepository(User);
+    const userRepository = AppDataSource.getRepository(User);
 
-    const buyerFound = await buyerRepository.findOneBy({
+    const userFound = await userRepository.findOneBy({
       id: id,
     });
 
-    if (!buyerFound) {
-      throw new AppError("User is not doctor", 403);
+    if (!userFound?.isSeller) {
+      throw new AppError("User is not seller", 403);
     }
     next();
   } catch (err) {
