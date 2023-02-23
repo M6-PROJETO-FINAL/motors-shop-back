@@ -9,7 +9,7 @@ import {
   deleteUserController,
   listAllUsersController,
   updateUserController,
-} from "../../controllers/buyer/buyerControllers";
+} from "../../controllers/user/userControllers";
 
 const userRoutes = Router();
 

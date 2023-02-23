@@ -21,10 +21,8 @@ const loginBuyerService = async ({
 
   await validateEmail(email);
 
-  await validatePassword(password);
-
   if (!user) {
-    throw new Error("Wrong email/password");
+    throw new AppError("Wrong email/password", 401);
   }
 
   let matchPass;
@@ -34,7 +32,7 @@ const loginBuyerService = async ({
   }
 
   if (!matchPass) {
-    throw new AppError("Invalid email or password", 401);
+    throw new AppError("Wrong email or password", 401);
   }
 
   const token = jwt.sign(
