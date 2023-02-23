@@ -11,6 +11,8 @@ import {
 
 import { Address } from "./address.entity";
 import { Advertisement } from "./advertisement.entity";
+import { Comment } from "./comments.entity";
+
 
 @Entity()
 export class User {
@@ -64,4 +66,7 @@ export class User {
     eager: true,
   })
   advertisements: Advertisement[];
+
+  @OneToMany(() => Comment, (comment) => comment.user, { onDelete: "CASCADE" })
+  comment: Comment[];
 }

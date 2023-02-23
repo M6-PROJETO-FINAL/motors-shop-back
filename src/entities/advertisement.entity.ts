@@ -5,9 +5,12 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   ManyToOne,
+  OneToMany
 } from "typeorm";
 
 import { User } from "./user.entity";
+import { VehicleImages } from "./vehicleImages.entity";
+import { Comment } from "./comments.entity";
 
 @Entity()
 export class Advertisement {
@@ -23,10 +26,10 @@ export class Advertisement {
   @Column()
   year: number;
 
-  @Column()
+  @Column({ type: "decimal", precision: 10, scale: 2 })
   km: number;
 
-  @Column()
+  @Column({ type: "decimal", precision: 10, scale: 2 })
   price: number;
 
   @Column()
@@ -53,4 +56,14 @@ export class Advertisement {
 
   @ManyToOne((type) => User, (user) => user.advertisements)
   user: User;
+
+  @OneToMany(() => Comment, (comment) => comment.vehicle, {
+    onDelete: "CASCADE",
+  })
+  comment: Comment[];
+
+  @OneToMany(() => VehicleImages, (vehicleImages) => vehicleImages.vehicle, {
+    eager: true,
+  })
+  vehicleImages: VehicleImages[];
 }
