@@ -2,12 +2,10 @@ import { DataSource } from "typeorm";
 import "dotenv/config";
 import { Address } from "./entities/address.entity";
 import { Advertisement } from "./entities/advertisement.entity";
-import { User } from './entities/user.entity';
-import { InitialMigrations1676898053277  } from "./migrations/1676898053277-InitialMigrations";
-import {migrations1677177211911} from "./migrations/1677177211911-migrations"
+import { User } from "./entities/user.entity";
 import { Comment } from "./entities/comments.entity";
 import { VehicleImages } from "./entities/vehicleImages.entity";
-
+import { Initial1677693890145 } from "./migrations/1677693890145-Initial";
 
 const AppDataSource = new DataSource({
   type: "postgres",
@@ -18,8 +16,8 @@ const AppDataSource = new DataSource({
   database: process.env.POSTGRES_DB,
   synchronize: false,
   logging: true,
-  entities: [Address, Advertisement, User, Comment, VehicleImages ],
-  migrations: [migrations1677177211911],
+  entities: [Address, Advertisement, Comment, User, VehicleImages],
+  migrations: [Initial1677693890145],
 });
 
 export default AppDataSource;
