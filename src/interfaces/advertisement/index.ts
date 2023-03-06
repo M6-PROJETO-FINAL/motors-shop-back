@@ -8,7 +8,7 @@ export interface IAdvertisementCreate {
   km: number;
   price: number;
   description: string;
-  type_veihcle: string;
+  type_veihcle: "car" | "motorhicle";
   image_cover: string;
   first_image: string;
   vehicleImages: string[];
@@ -23,7 +23,7 @@ export interface IAdvertisement {
   km: number;
   price: number;
   description: string;
-  type_veihcle: string;
+  type_veihcle: "car" | "motorhicle";
   image_cover: string;
   first_image: string;
   vehicleImages: IVehicleImage[];

@@ -4,6 +4,7 @@ import "dotenv/config";
 import AppDataSource from "../data-source";
 import { User } from "./../entities/user.entity";
 import { AppError } from "../errors/appError";
+import { Advertisement } from "../entities/advertisement.entity";
 
 export const verifyAuthTokenMiddleware = (
   req: Request,
@@ -71,6 +72,43 @@ export const verifyOwner = (
 
     if (logged != onRequest) {
       return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    next();
+  } catch (err) {
+    return res.status(400).send(err);
+  }
+};
+
+export const verifyIsOwnerAdv = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const id = req.user.userId;
+    let advSelect = req.params.id;
+
+    const userRepository = AppDataSource.getRepository(User);
+
+    const userFound = await userRepository.findOneBy({
+      id: id,
+    });
+
+    const advRepository = AppDataSource.getRepository(Advertisement);
+
+    const advFound = await advRepository.findOneBy({ id: advSelect });
+
+    if (!advFound) {
+      throw new AppError("Advertisement is not valid", 403);
+    }
+
+    if (
+      !userFound?.advertisements.some(
+        (advertisement) => advertisement.id === advFound.id
+      )
+    ) {
+      throw new AppError("User is not seller about this advertisement", 401);
     }
 
     next();

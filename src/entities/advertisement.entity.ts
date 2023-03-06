@@ -5,7 +5,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   ManyToOne,
-  OneToMany
+  OneToMany,
 } from "typeorm";
 
 import { User } from "./user.entity";
@@ -36,7 +36,7 @@ export class Advertisement {
   description: string;
 
   @Column()
-  type_veihcle: string;
+  type_veihcle: "car" | "motorhicle";
 
   @Column()
   image_cover: string;

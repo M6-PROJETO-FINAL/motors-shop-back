@@ -37,6 +37,13 @@ const advertisementCreateService = async ({
     );
   }
 
+  if (type_veihcle !== "car" && type_veihcle !== "motorhicle") {
+    throw new AppError(
+      "Type veihcle: Only car or motorhicle are accepted.",
+      400
+    );
+  }
+
   const userRepository = AppDataSource.getRepository(User);
   const advertisementRepository = AppDataSource.getRepository(Advertisement);
 

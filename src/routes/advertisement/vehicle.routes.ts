@@ -1,7 +1,7 @@
 import {
   verifyAuthTokenMiddleware,
   verifyIsSeller,
-  verifyOwner,
+  verifyIsOwnerAdv,
 } from "../../middlewares/index";
 import { Router } from "express";
 import {
@@ -24,14 +24,14 @@ advertisementRoutes.get("", advertisementListController);
 advertisementRoutes.delete(
   "/:id",
   verifyAuthTokenMiddleware,
-  verifyIsSeller,
+  verifyIsOwnerAdv,
   advertisementDeleteController
 );
 
 advertisementRoutes.patch(
   "/:id",
   verifyAuthTokenMiddleware,
-  verifyIsSeller,
+  verifyIsOwnerAdv,
   advertisementUpdateController
 );
 
