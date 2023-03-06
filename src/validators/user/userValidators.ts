@@ -33,11 +33,14 @@ const validateZipCode = async (zipCode: string) => {
     zipCode: yup
       .string()
       .required()
-      .matches(/^[0-9]{5}-[0-9]{3}$/, "Incorrect zip code"),
+      .matches(
+        /^[0-9]{5}-[0-9]{3}$/,
+        "Incorrect zip code, please follow this example: '88888-555'"
+      ),
   });
 
   await shape.validate({ zipCode }, { abortEarly: false }).catch((err) => {
-    throw new AppError(err.errors, 400);
+    throw new AppError(err.errors, 401);
   });
 };
 

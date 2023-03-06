@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import advDeleteService from "../../services/advertisement/advDelete.service";
 import AdvListService from "../../services/advertisement/advList.service";
 import advUpdateService from "../../services/advertisement/advUpdate.service";
-import advertisementCreateService from "../../services/advertisement/createAdv.Service";
+import advertisementCreateService from "../../services/advertisement/advCreate.service";
 
 const advertisementCreateController = async (req: Request, res: Response) => {
   const {

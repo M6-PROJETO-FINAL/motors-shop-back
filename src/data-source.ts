@@ -5,7 +5,7 @@ import { Advertisement } from "./entities/advertisement.entity";
 import { User } from "./entities/user.entity";
 import { Comment } from "./entities/comments.entity";
 import { VehicleImages } from "./entities/vehicleImages.entity";
-import { Initial1677693890145 } from "./migrations/1677693890145-Initial";
+import { alterType1678110644431 } from "./migrations/1678110644431-alterType";
 
 const AppDataSource = new DataSource({
   type: "postgres",
@@ -17,7 +17,7 @@ const AppDataSource = new DataSource({
   synchronize: false,
   logging: true,
   entities: [Address, Advertisement, Comment, User, VehicleImages],
-  migrations: [Initial1677693890145],
+  migrations: [alterType1678110644431],
 });
 
 export default AppDataSource;
