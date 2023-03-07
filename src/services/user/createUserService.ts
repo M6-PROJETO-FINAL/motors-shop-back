@@ -5,7 +5,7 @@ import {
   validatePassword,
 } from "../../validators/user/userValidators";
 import { hash } from "bcryptjs";
-import AppDataSource from "../../data-source";
+import {AppDataSource} from "../../data-source";
 import { User } from "../../entities/user.entity";
 import createAddressService from "../address/createAddressService";
 
