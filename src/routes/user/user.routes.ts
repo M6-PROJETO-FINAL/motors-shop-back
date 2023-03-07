@@ -8,6 +8,7 @@ import {
   createUserController,
   deleteUserController,
   listAllUsersController,
+  retrieveUserController,
   updateUserController,
 } from "../../controllers/user/userControllers";
 
@@ -21,6 +22,7 @@ userRoutes.patch(
   verifyOwner,
   updateUserController
 );
+userRoutes.get("/profile", verifyAuthTokenMiddleware, retrieveUserController);
 userRoutes.delete(
   "/:id",
   verifyAuthTokenMiddleware,
