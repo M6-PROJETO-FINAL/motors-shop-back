@@ -1,5 +1,5 @@
 import { VehicleImages } from "../../entities/vehicleImages.entity";
-import AppDataSource from "../../data-source";
+import {AppDataSource} from "../../data-source";
 import { IVehicleImageCreate } from "../../interfaces/vehicleImage";
 
 const vehicleImageCreateService = async (url: string) => {
