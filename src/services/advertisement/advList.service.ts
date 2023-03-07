@@ -1,4 +1,4 @@
-import AppDataSource from "../../data-source";
+import {AppDataSource} from "../../data-source";
 import { Advertisement } from "../../entities/advertisement.entity";
 import { IAdvertisement } from "../../interfaces/advertisement";
 
