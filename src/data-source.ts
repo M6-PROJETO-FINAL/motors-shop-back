@@ -25,11 +25,7 @@ const dataSourceConfig = (): DataSourceOptions => {
 
   return {
     type: "postgres",
-    host: process.env.POSTGRES_HOST,
-    port: 5432,
-    username: process.env.POSTGRES_USER,
-    password: process.env.POSTGRES_PWD,
-    database: process.env.POSTGRES_DB,
+    url: process.env.DATABASE_URL,
     logging: false,
     entities: [Address, Advertisement, Comment, User, VehicleImages],
     migrations: [alterType1678110644431],

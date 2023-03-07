@@ -10,7 +10,7 @@ dotenv.config();
     console.error("Error during Data Source initialization", err);
   });
 
-  app.listen(3000, () => {
+  app.listen(5432, () => {
     console.log("Server running");
   });
 })();
