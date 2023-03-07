@@ -12,6 +12,17 @@ import "reflect-metadata";
 
 const dataSourceConfig = (): DataSourceOptions => {
 
+  const nodeEnv: string = process.env.NODE_ENV;
+
+  if (nodeEnv === "production") {
+  return {
+    type: "postgres",
+    url: process.env.DATABASE_URL,
+    entities: [Address, Advertisement, Comment, User, VehicleImages],
+    migrations: [alterType1678110644431],
+  };
+}
+
   return {
     type: "postgres",
     host: process.env.POSTGRES_HOST,
