@@ -12,7 +12,7 @@ import "reflect-metadata";
 
 const dataSourceConfig = (): DataSourceOptions => {
 
-  const nodeEnv: string = process.env.NODE_ENV;
+  const nodeEnv: string = process.env.NODE_ENV!;
 
   if (nodeEnv === "production") {
   return {
