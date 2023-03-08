@@ -1,9 +1,8 @@
+import { Router } from "express";
 import {
   verifyAuthTokenMiddleware,
-  verifyIsSeller,
   verifyOwner,
 } from "../../middlewares/index";
-import { Router } from "express";
 import {
   createUserController,
   deleteUserController,
@@ -16,13 +15,18 @@ const userRoutes = Router();
 
 userRoutes.post("", createUserController);
 userRoutes.get("", listAllUsersController);
+userRoutes.get(
+  "/profile",
+  verifyAuthTokenMiddleware,
+  verifyOwner,
+  retrieveUserController
+);
 userRoutes.patch(
   "/:id",
   verifyAuthTokenMiddleware,
   verifyOwner,
   updateUserController
 );
-userRoutes.get("/profile", verifyAuthTokenMiddleware, retrieveUserController);
 userRoutes.delete(
   "/:id",
   verifyAuthTokenMiddleware,
