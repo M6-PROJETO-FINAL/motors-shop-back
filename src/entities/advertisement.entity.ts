@@ -64,6 +64,7 @@ export class Advertisement {
 
   @OneToMany(() => VehicleImages, (vehicleImages) => vehicleImages.vehicle, {
     eager: true,
+    nullable: true,
   })
   vehicleImages: VehicleImages[];
 }
