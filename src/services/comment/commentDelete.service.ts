@@ -1,4 +1,4 @@
-import AppDataSource from "../../data-source";
+import {AppDataSource} from "../../data-source";
 import { Comment } from "../../entities/comments.entity";
 import { AppError } from "../../errors/appError";
 
@@ -11,7 +11,7 @@ const commentDeleteService = async (id: string) => {
     throw new AppError("Comment not found", 404);
   }
 
-  await commentRepository.delete(commentSelect);
+  await commentRepository.delete({id});
 
   return true;
 };

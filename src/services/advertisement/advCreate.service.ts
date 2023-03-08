@@ -1,6 +1,6 @@
 import { User } from "../../entities/user.entity";
 import { Advertisement } from "../../entities/advertisement.entity";
-import AppDataSource from "../../data-source";
+import {AppDataSource} from "../../data-source";
 import { AppError } from "../../errors/appError";
 import { IAdvertisementCreate } from "../../interfaces/advertisement";
 import { IVehicleImage } from "../../interfaces/vehicleImage";
@@ -32,7 +32,7 @@ const advertisementCreateService = async ({
     !vehicleImages
   ) {
     throw new AppError(
-      "Fields: type, title, year, km, price, description, type_veihcle, image_cover, first_image and vehicleImages is necessáry",
+      "Fields: type, title, year, km, price, description, type_veihcle, image_cover, first_image and vehicleImages is necessary",
       400
     );
   }
@@ -40,6 +40,13 @@ const advertisementCreateService = async ({
   if (type_veihcle !== "car" && type_veihcle !== "motorhicle") {
     throw new AppError(
       "Type veihcle: Only car or motorhicle are accepted.",
+      400
+    );
+  }
+
+  if (type !== "sale" && type !== "auction") {
+    throw new AppError(
+      "Type Advertisemenet: Only Sale or Auction are accepted.",
       400
     );
   }

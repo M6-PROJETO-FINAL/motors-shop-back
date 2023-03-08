@@ -1,4 +1,4 @@
-import AppDataSource from "../../data-source";
+import {AppDataSource} from "../../data-source";
 import jwt from "jsonwebtoken";
 import "dotenv/config";
 import { IUserLogin } from "../../interfaces/user";

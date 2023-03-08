@@ -1,4 +1,4 @@
-import AppDataSource from "../../data-source";
+import {AppDataSource} from "../../data-source";
 import { Comment } from "../../entities/comments.entity";
 
 const commentListService = async () => {
