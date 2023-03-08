@@ -18,7 +18,6 @@ userRoutes.get("", listAllUsersController);
 userRoutes.get(
   "/profile",
   verifyAuthTokenMiddleware,
-  verifyOwner,
   retrieveUserController
 );
 userRoutes.patch(
