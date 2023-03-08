@@ -3,6 +3,7 @@ import commentCreateService from "../../services/comment/commentCreate.service";
 import commentListService from "../../services/comment/commentList.service";
 import commentUpdateService from "../../services/comment/commentUpdate.service";
 import commentDeleteService from "../../services/comment/commentDelete.service";
+import commentByAdvertisementIdService from "../../services/comment/commentByAdvertisementId.service";
 
 const commentCreateController = async (req: Request, res: Response) => {
   try {
@@ -61,9 +62,20 @@ const commentDeleteController = async (req: Request, res: Response) => {
   }
 };
 
+const commentByAdvertisementIdController = async (
+  req: Request,
+  res: Response
+) => {
+  const { id } = req.params;
+  const comments = await commentByAdvertisementIdService(id);
+
+  return res.status(200).json(comments);
+};
+
 export {
   commentCreateController,
   commentDeleteController,
   commentListController,
   commentUpdateController,
+  commentByAdvertisementIdController,
 };
