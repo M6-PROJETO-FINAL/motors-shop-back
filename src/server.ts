@@ -1,6 +1,6 @@
 import app from "./app";
 import dotenv from "dotenv";
-import {AppDataSource} from "./data-source";
+import { AppDataSource } from "./data-source";
 import "dotenv/config";
 
 dotenv.config();
@@ -10,7 +10,7 @@ dotenv.config();
     console.error("Error during Data Source initialization", err);
   });
 
-  app.listen(3333, () => {
+  app.listen(3001, () => {
     console.log("Server running");
   });
 })();
