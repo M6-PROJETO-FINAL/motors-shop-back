@@ -1,19 +1,19 @@
-import {AppDataSource} from "../../data-source";
+import { AppDataSource } from "../../data-source";
 import { Advertisement } from "../../entities/advertisement.entity";
 import { Comment } from "../../entities/comments.entity";
 
-const commentByAdvertisementIdService = async (id:string) => {
+const commentByAdvertisementIdService = async (id: string) => {
   const commentRepository = AppDataSource.getRepository(Comment);
   const commentSelect = await commentRepository.find({
     relations: {
-        vehicle: true,
+      vehicle: true,
     },
     where: {
-        vehicle: {
-            id: id,
-        },
+      vehicle: {
+        id: id,
+      },
     },
-  })
+  });
   return commentSelect;
 };
 
