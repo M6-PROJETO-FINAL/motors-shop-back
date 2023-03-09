@@ -5,22 +5,24 @@ import {
   validatePassword,
 } from "../../validators/user/userValidators";
 import { hash } from "bcryptjs";
-import {AppDataSource} from "../../data-source";
+import { AppDataSource } from "../../data-source";
 import { User } from "../../entities/user.entity";
 import createAddressService from "../address/createAddressService";
 
-const createUserService = async ({
-  fullName,
-  email,
-  cpf,
-  cellPhone,
-  birthdate,
-  description,
-  address,
-  password,
-  isSeller,
-  active,
-}: IUserRequest): Promise<User> => {
+const createUserService = async (
+  {
+    fullName,
+    email,
+    cpf,
+    cellPhone,
+    birthdate,
+    description,
+    address,
+    password,
+    isSeller,
+    active,
+  }: IUserRequest
+): Promise<User> => {
   const userRepository = AppDataSource.getRepository(User);
   if (!password) {
     throw new AppError("Password is missing", 400);

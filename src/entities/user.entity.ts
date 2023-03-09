@@ -13,7 +13,6 @@ import { Address } from "./address.entity";
 import { Advertisement } from "./advertisement.entity";
 import { Comment } from "./comments.entity";
 
-
 @Entity()
 export class User {
   @PrimaryGeneratedColumn("uuid")
@@ -39,6 +38,9 @@ export class User {
 
   @Column({ default: false })
   isSeller: boolean;
+
+  @Column({nullable: true})
+  tokenResetPassword: string;
 
   @Column()
   @Exclude()

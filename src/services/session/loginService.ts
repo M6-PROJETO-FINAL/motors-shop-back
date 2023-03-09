@@ -1,4 +1,4 @@
-import {AppDataSource} from "../../data-source";
+import { AppDataSource } from "../../data-source";
 import jwt from "jsonwebtoken";
 import "dotenv/config";
 import { IUserLogin } from "../../interfaces/user";
@@ -11,7 +11,7 @@ import {
 import { AppError } from "../../errors/appError";
 import { compare } from "bcryptjs";
 
-const loginBuyerService = async ({
+const loginUserService = async ({
   email,
   password,
 }: IUserLogin): Promise<String> => {
@@ -50,4 +50,4 @@ const loginBuyerService = async ({
   return token;
 };
 
-export default loginBuyerService;
+export default loginUserService;

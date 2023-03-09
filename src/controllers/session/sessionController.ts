@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import loginBuyerService from "../../services/session/loginService";
+import loginUserService from "../../services/session/loginService";
 
-const loginBuyerController = async (req: Request, res: Response) => {
+const loginUserController = async (req: Request, res: Response) => {
   const login = req.body;
 
   try {
-    const token = await loginBuyerService(login);
+    const token = await loginUserService(login);
     return res.status(200).json({ token });
   } catch (error) {
     if (error instanceof Error) {
@@ -16,4 +16,4 @@ const loginBuyerController = async (req: Request, res: Response) => {
   }
 };
 
-export { loginBuyerController };
+export { loginUserController };

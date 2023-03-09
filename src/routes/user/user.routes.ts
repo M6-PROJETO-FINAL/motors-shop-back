@@ -7,7 +7,9 @@ import {
   createUserController,
   deleteUserController,
   listAllUsersController,
+  resetUserPasswordController,
   retrieveUserController,
+  sendResetUserPasswordController,
   updateUserController,
 } from "../../controllers/user/userControllers";
 
@@ -15,11 +17,7 @@ const userRoutes = Router();
 
 userRoutes.post("", createUserController);
 userRoutes.get("", listAllUsersController);
-userRoutes.get(
-  "/profile",
-  verifyAuthTokenMiddleware,
-  retrieveUserController
-);
+userRoutes.get("/profile", verifyAuthTokenMiddleware, retrieveUserController);
 userRoutes.patch(
   "/:id",
   verifyAuthTokenMiddleware,
@@ -32,5 +30,7 @@ userRoutes.delete(
   verifyOwner,
   deleteUserController
 );
+userRoutes.post("/resetPassword", sendResetUserPasswordController);
+userRoutes.patch("/resetPassword/:token", resetUserPasswordController);
 
 export default userRoutes;

@@ -6,6 +6,8 @@ import listAllUsersService from "../../services/user/listAllUersService";
 import updateUserService from "../../services/user/updateUserService";
 import deleteUserService from "../../services/user/deleteUserService";
 import retrieveUserService from "../../services/user/retrieveUserService";
+import sendResetPasswordService from "../../services/user/sendResetPasswordService";
+import resetUserPasswordService from "../../services/user/resetUserPasswordService";
 
 const createUserController = async (req: Request, res: Response) => {
   try {
@@ -87,10 +89,31 @@ const deleteUserController = async (req: Request, res: Response) => {
   }
 };
 
+const sendResetUserPasswordController = async (req: Request, res: Response) => {
+  const { email } = req.body;
+  const protocol = req.protocol;
+  const host = req.get("host") ?? "";
+  await sendResetPasswordService(email, protocol, host);
+  return res.json({
+    message: "Token send with success!",
+  });
+};
+
+const resetUserPasswordController = async (req: Request, res: Response) => {
+  const { token } = req.params;
+  const { newPassword } = req.body;
+  await resetUserPasswordService(token, newPassword);
+  return res.json({
+    message: "Password changed!",
+  });
+};
+
 export {
   createUserController,
   retrieveUserController,
   listAllUsersController,
   updateUserController,
   deleteUserController,
+  sendResetUserPasswordController,
+  resetUserPasswordController,
 };
