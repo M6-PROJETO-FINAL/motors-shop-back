@@ -1,6 +1,6 @@
 import { User } from "../../entities/user.entity";
 import { Advertisement } from "../../entities/advertisement.entity";
-import {AppDataSource} from "../../data-source";
+import { AppDataSource } from "../../data-source";
 import { AppError } from "../../errors/appError";
 import { IAdvertisementCreate } from "../../interfaces/advertisement";
 import { IVehicleImage } from "../../interfaces/vehicleImage";
