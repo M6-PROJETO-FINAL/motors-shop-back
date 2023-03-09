@@ -5,11 +5,9 @@ import { Advertisement } from "./entities/advertisement.entity";
 import { User } from "./entities/user.entity";
 import { Comment } from "./entities/comments.entity";
 import { VehicleImages } from "./entities/vehicleImages.entity";
-import { alterType1678110644431 } from "./migrations/1678110644431-alterType";
-import { updateNull1678310714526 } from "./migrations/1678310714526-updateNull";
-import { userTokenReset1678367723561 } from "./migrations/1678367723561-userTokenReset";
 
 import "reflect-metadata";
+import { initialMigration1678376809679 } from "./migrations/1678376809679-initialMigration";
 
 const dataSourceConfig = (): DataSourceOptions => {
   const nodeEnv: string = process.env.NODE_ENV!;
@@ -19,11 +17,7 @@ const dataSourceConfig = (): DataSourceOptions => {
       type: "postgres",
       url: process.env.DATABASE_URL,
       entities: [Address, Advertisement, Comment, User, VehicleImages],
-      migrations: [
-        alterType1678110644431,
-        updateNull1678310714526,
-        userTokenReset1678367723561,
-      ],
+      migrations: [initialMigration1678376809679],
     };
   }
 
@@ -32,11 +26,7 @@ const dataSourceConfig = (): DataSourceOptions => {
     url: process.env.DATABASE_URL,
     logging: false,
     entities: [Address, Advertisement, Comment, User, VehicleImages],
-    migrations: [
-      alterType1678110644431,
-      updateNull1678310714526,
-      userTokenReset1678367723561,
-    ],
+    migrations: [initialMigration1678376809679],
   };
 };
 
